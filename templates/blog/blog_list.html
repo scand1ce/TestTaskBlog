@@ -34,33 +34,22 @@ input.btn-dark {
     <form>
         {% csrf_token %}
 
-        <div class="table-responsive-lg">
-            <table class="table table-hover table-dark" style="background-color: cornflowerblue ">
-                <thead>
-                <tr>
+        <div class="container">
 
-                    <th scope="col">Блогер</th>
-                    <th scope="col">Электронная почта</th>
+                {% for  blog  in  userblog_list %}
 
-                    <th scope="col">Блог</th>
-
-                </tr>
-                {% for  user  in  users_list %}
-                    <tr>
-                        <td>{{ user.username }}</td>
-                        <td>{{ user.email }}</td>
+                    {{ blog.owner }}
 
 
-                        <td><input class="btn-dark" type="button" value="Читать блог"
-                                   onclick="location.href='{% url 'detail_blog' owner.pk %}'"></td>
 
-                    </tr>
+                       <input class="btn-dark" type="button" value="Читать блог"
+                                   onclick="location.href='{% url 'detail_blog' '">
+
+
 
                 {% endfor %}
 
-                </thead>
 
-            </table>
 
 
         </div>
