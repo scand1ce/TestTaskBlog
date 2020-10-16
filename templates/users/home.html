@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+
+    <style>
+
+        table {
+            width: 1500px; /* Ширина таблицы */
+            margin: auto; /* Выравниваем таблицу по центру */
+        }
+
+        td, th {
+            border: 2px solid green; /* Рамка вокруг таблицы */
+            text-align: center; /* Выравниваем текст по центру ячейки */
+        }
+        input.btn.btn-dark {
+ float: right;
+}
+input.btn-dark {
+ float: top;
+}
+    </style>
+
+
+    <h3 class="text-md-center">Список зарегистрированных пользователей:</h3>
+
+<div class="main-container">
+
+
+    <form>
+        {% csrf_token %}
+
+        <div class="table-responsive-lg">
+            <table class="table table-hover table-dark" style="background-color: #16181b ">
+                <thead>
+                <tr>
+
+                    <th scope="col">Никнэйм</th>
+                    <th scope="col">Электронная почта</th>
+
+                    <th scope="col">Блог</th>
+
+                </tr>
+                {% for user in customuser_list %}
+
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email }}</td>
+
+
+                        <td><input class="btn-dark" type="button" value="Читать блог" onclick="location.href='#'"></td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </thead>
+
+            </table>
+
+
+        </div>
+
+    </form>
+
+
+</div>
+
+
+
+{% else %}
+<h3>Войдите в аккаунт или зарегистрируйтесь!</h3>
+
+
+{% endif %}
+
+{% endblock content %}
