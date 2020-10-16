@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<input class="btn-dark" type="button" value="Смотреть блогеров" onclick="location.href='{% url 'users_list' %}'">
+
+
+
+
+{% else %}
+<h3>Войдите в аккаунт!</h3>
+<input class="btn-dark" type="button" value="Войти" onclick="location.href='{% url 'login' %}'">
+
+{% endif %}
+
+{% endblock content %}
