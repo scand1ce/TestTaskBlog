@@ -1,17 +1,17 @@
 from django.db import models
 from django.urls import reverse
 
-from users.models import Users
+from users.models import User
 
 
-class UserBlog(models.Model):
-    owner = models.ForeignKey(Users, on_delete=models.CASCADE, verbose_name='Владелец блога')
+class Blog(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Владелец блога')
 
     def __str__(self):
-        return str(self.owner.verbose_name)
+        return str(self.owner)
 
     def get_absolute_url(self):
-        url = reverse('detail_blog', args=[self.author.username, self.pk])
+        url = reverse('detail_blog', args=[self.owner, self.pk])
         return url
 
     class Meta:
@@ -19,17 +19,17 @@ class UserBlog(models.Model):
         verbose_name_plural = 'Блоги пользователей'
 
 
-class NewsBlog(models.Model):
-    user_blog = models.ForeignKey(UserBlog, on_delete=models.CASCADE, verbose_name='Блог', blank=False, null=False,
+class New(models.Model):
+    user_blog = models.ForeignKey(Blog, on_delete=models.CASCADE, verbose_name='Блог', blank=False, null=False,
                                   related_name='news')
-    author = models.ForeignKey(Users, on_delete=models.CASCADE, verbose_name='Автор', blank=False,
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор', blank=False,
                                null=False)
     title = models.CharField(max_length=150, verbose_name='Название')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Опубликовано')
     news_text = models.TextField(max_length=600, blank=True, verbose_name='Текст')
 
     def __str__(self):
-        return self.author
+        return str(self.author)
 
     class Meta:
         verbose_name = 'Новость блога'

@@ -6,7 +6,7 @@
     <div class="card text-center" style=" background-image:
      url('https://images.wallpaperscraft.ru/image/gruzovik_mashina_fary_160215_1600x900.jpg');">
         <div class="card-header">
-            <h2 class="card-title">{{ blog.owner }}</h2>
+            <h2 class="card-title">Блог блогера, {{ blog }}</h2>
         </div>
 
     <div class="comment">
@@ -14,6 +14,7 @@
         <h3 align="center">Новости Блога</h3>
         <hr color="white">
 
+         {% if user.is_authenticated and request.user %}
     </div>
     <div class="card text-center" style="background-color: #16181b">
         <div class="col-lg-5" >
@@ -24,19 +25,22 @@
             </form>
         </div>
     </div>
+    {% endif %}
 
+{% for i in  new_list %}
+        <hr color="white">
+        <div style="background-color: #16181b" class="col">
+            <h5> Название: {{i.title}}</h5>
+            <h5>Содержание: {{ i.news_text }}</h5>
+            <p>Автор комментария, {{ i.author }}.</p>
 
-{% for new in userblog.newsblog.all %}
-    <hr color="white">
-    <div style="background-color: #16181b" class="col">
-    <p>Автор комментария, {{ new.author|safe }}.</p>
-        <h5>{{ new.news_text }}</h5>
-    <p>Опубликовано {{ new.created_at }} </p>
-    </div>
+            <p>Опубликовано {{ i.created_at }} </p>
+        </div>
 
-<hr color="white">
+        <hr color="white">
+            </div>
 {% endfor %}
 
 {% endblock content %}
 
-    </div>
+

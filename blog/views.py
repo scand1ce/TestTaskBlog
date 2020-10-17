@@ -3,16 +3,16 @@ from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import FormMixin
 from blog.forms import CreateNewsForm
-from blog.models import UserBlog
+from blog.models import Blog
 
 
 class ListBlogView(LoginRequiredMixin, ListView):
-    model = UserBlog
+    model = Blog
     template_name = 'blog/blog_list.html'
 
 
 class BlogView(FormMixin, DetailView):
-    model = UserBlog
+    model = Blog
     template_name = 'blog/detail_blog.html'
     form_class = CreateNewsForm
 
@@ -28,10 +28,11 @@ class BlogView(FormMixin, DetailView):
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
-        self.object.user_blog_id = self.get_object()
+        self.object.user_blog = self.get_object()
         self.object.author = self.request.user
         self.object.save()
         return super().form_valid(form)
+
 
 
 
