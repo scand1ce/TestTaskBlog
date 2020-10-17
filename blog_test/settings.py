@@ -72,9 +72,15 @@ WSGI_APPLICATION = 'blog_test.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'example',
+        'HOST': 'localhost',
+        'PORT': 5432,
+        'CONN_MAX_AGE': 500
     }
+
 }
 
 

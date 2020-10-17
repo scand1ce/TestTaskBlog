@@ -1,60 +1,49 @@
 {% extends 'base.html' %}
 
-{% block title %}Home{% endblock title %}
+{% block title %}Блоги{% endblock title %}
 
 {% block content %}
 
+<style type="text/css">
+    #layer2 {
+        width: 5%; /* Ширина второго слоя */
+        background: #cc0;
+    }
+
+
+</style>
 {% if user.is_authenticated %}
 
-<style>
 
-        table {
-            width: 1500px; /* Ширина таблицы */
-            margin: auto; /* Выравниваем таблицу по центру */
-        }
-
-        td, th {
-            border: 2px solid green; /* Рамка вокруг таблицы */
-            text-align: center; /* Выравниваем текст по центру ячейки */
-        }
-        input.btn.btn-dark {
- float: right;
-}
-input.btn-dark {
- float: top;
-}
-    </style>
-
-
-    <h3 class="text-md-center">Список всех  блогеров:</h3>
+<h3 class="text-md-center">Список блогов:</h3>
 
 <div class="main-container">
 
+    {% for blog in userblog_list %}
 
-    <form>
-        {% csrf_token %}
-
-        <div class="container">
-
-                {% for  blog  in  userblog_list %}
-
-                    {{ blog.owner }}
-
-
-
-                       <input class="btn-dark" type="button" value="Читать блог"
-                                   onclick="location.href='{% url 'detail_blog' '">
+    <div id="layer2" class="container">
+        <div class="card">
+            <div class="card-body"><!-- Начало текстового контента -->
+                {{ blog.owner }}
+            </div>
+            <button class="info nullbutton" >
+     <a href="{% url 'detail_blog' blog.pk %}" class="btn bg-dark text-white">Смотреть полностью</a>
+ </button>
+                   </div>
+                   </div>
 
 
-
-                {% endfor %}
 
 
 
 
         </div>
+        <hr>
 
-    </form>
+        {% endfor %}
+
+
+
 
 
 </div>

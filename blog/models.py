@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 from users.models import Users
 
@@ -8,6 +9,10 @@ class UserBlog(models.Model):
 
     def __str__(self):
         return str(self.owner.verbose_name)
+
+    def get_absolute_url(self):
+        url = reverse('detail_blog', args=[self.author.username, self.pk])
+        return url
 
     class Meta:
         verbose_name = 'Блог пользователя'

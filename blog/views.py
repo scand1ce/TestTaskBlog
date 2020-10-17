@@ -2,7 +2,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import FormMixin
-
 from blog.forms import CreateNewsForm
 from blog.models import UserBlog
 
@@ -29,7 +28,7 @@ class BlogView(FormMixin, DetailView):
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
-        self.object.post = self.get_object()
+        self.object.user_blog_id = self.get_object()
         self.object.author = self.request.user
         self.object.save()
         return super().form_valid(form)

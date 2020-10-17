@@ -8,25 +8,27 @@
 
 <style>
 
-        table {
-            width: 1500px; /* Ширина таблицы */
-            margin: auto; /* Выравниваем таблицу по центру */
-        }
+    table {
+        width: 1500px; /* Ширина таблицы */
+        margin: auto; /* Выравниваем таблицу по центру */
+    }
 
-        td, th {
-            border: 2px solid green; /* Рамка вокруг таблицы */
-            text-align: center; /* Выравниваем текст по центру ячейки */
-        }
-        input.btn.btn-dark {
- float: right;
-}
-input.btn-dark {
- float: top;
-}
-    </style>
+    td, th {
+        border: 2px solid green; /* Рамка вокруг таблицы */
+        text-align: center; /* Выравниваем текст по центру ячейки */
+    }
+
+    input.btn.btn-dark {
+        float: right;
+    }
+
+    input.btn-dark {
+        float: top;
+    }
+</style>
 
 
-    <h3 class="text-md-center">Список всех  блогеров:</h3>
+<h3 class="text-md-center">Список всех блогеров:</h3>
 
 <div class="main-container">
 
@@ -42,26 +44,23 @@ input.btn-dark {
                     <th scope="col">Блогер</th>
                     <th scope="col">Электронная почта</th>
 
-                    <th scope="col">Блог</th>
+                </tr>
+                {% for user in users_list %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
 
                 </tr>
-                {% for  user  in  users_list %}
-                    <tr>
-                        <td>{{ user.username }}</td>
-                        <td>{{ user.email }}</td>
 
-
-                        <td><input class="btn-dark" type="button" value="Читать блог"
-                                   onclick="location.href='{% url 'detail_blog' owner.pk %}'"></td>
-
-                    </tr>
 
                 {% endfor %}
+
 
                 </thead>
 
             </table>
-
+            <input class="btn-dark" type="button" value="Смотреть все блоги"
+                   onclick="location.href='{% url 'list_blog' %}'">
 
         </div>
 
