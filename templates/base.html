@@ -6,11 +6,23 @@
     <meta charset="UTF-8">
     <title>{% block title %} Блоги для  блогеров {% endblock title %}</title>
 </head>
-<body style="background-color: slategray" text="white">
+
+<body style="background-color: gray" text="white">
 
 <div class="container md-3 center">
+    {% if user.is_authenticated %}
+
+    <div class="container"
+         style="background-color: black"><h3>Вы авторизированы как, {{user.username}}
+        <a href="#" style="background-color: white">
+            Выйти</a></h3></div>
+
+    {% else %}
+    <h1>:)</h1>
+    {%endif%}
         <div class="container-md-3 ">
             <div class="bg-dark text-white">
+
                 {% block content %}
 
                 {% endblock content %}
