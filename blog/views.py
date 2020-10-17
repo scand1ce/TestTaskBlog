@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import FormMixin
 from blog.forms import CreateNewsForm
-from blog.models import Blog
+from blog.models import Blog, New
 
 
 class ListBlogView(LoginRequiredMixin, ListView):
@@ -32,8 +32,3 @@ class BlogView(FormMixin, DetailView):
         self.object.author = self.request.user
         self.object.save()
         return super().form_valid(form)
-
-
-
-
-
