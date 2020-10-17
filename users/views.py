@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView, ListView
-from users.models import Users
+from users.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 
@@ -8,7 +8,7 @@ class HomePageView(TemplateView):
 
 
 class UsersListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
-    model = Users
+    model = User
     template_name = 'users/users_list.html'
 
     def test_func(self):
