@@ -4,7 +4,8 @@
 {% block content %}
 
     <div class="card text-center" style=" background-image:
-     url('https://images.wallpaperscraft.ru/image/gruzovik_mashina_fary_160215_1600x900.jpg');">
+     url('https://images.wallpaperscraft.ru/image/nochnoj_gorod_ogni_goroda_megapolis_126569_1600x900.jpg');">
+
         <div class="card-header">
             <h2 class="card-title">Блог блогера, {{ blog }}</h2>
         </div>
@@ -14,9 +15,11 @@
         <h3 align="center">Новости Блога</h3>
         <hr color="white">
 
-         {% if user.is_authenticated and request.user %}
+
+         {% if user.is_authenticated and request.user.pk == blog.owner.pk %}
     </div>
-    <div class="card text-center" style="background-color: #16181b">
+    <div class="container-md-center" style="background-color: #16181b">
+
         <div class="col-lg-5" >
             <form action="" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -24,22 +27,25 @@
                 <button type="submit" value="Добавить" class="btn btn-dark">Добавить</button>
             </form>
         </div>
-    </div>
-    {% endif %}
-
-{% for i in  new_list %}
-        <hr color="white">
-        <div style="background-color: #16181b" class="col">
-            <h5> Название: {{i.title}}</h5>
-            <h5>Содержание: {{ i.news_text }}</h5>
-            <p>Автор комментария, {{ i.author }}.</p>
-
-            <p>Опубликовано {{ i.created_at }} </p>
-        </div>
-
-        <hr color="white">
             </div>
-{% endfor %}
+ {% endif %}
+        <div class="container m-3">
+       <p><input class="btn btn-dark" type="button" value="Назад к блогам"
+                onclick="location.href='{% url 'list_blog' %}'"></p>
+        </div>
+    </div>
+
+        <div class="container">
+            {% for i in  blog.news.all %}
+            <hr color="white">
+        <div style="background-color: #16181b" class="col">
+            <h5> Название: <font color="red">{{i.title}}</font></h5>
+            <h5>Содержание: <font color="red">{{ i.news_text }}</font></h5>
+            <p>Автор: <font color="red">{{ i.author }}.</font></p>
+            <p>Опубликовано: <font color="red">{{ i.created_at }}</font> </p>
+        </div>
+            {% endfor %}
+</div>
 
 {% endblock content %}
 

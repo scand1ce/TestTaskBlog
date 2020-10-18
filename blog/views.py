@@ -32,8 +32,3 @@ class BlogView(FormMixin, DetailView):
         self.object.author = self.request.user
         self.object.save()
         return super().form_valid(form)
-
-
-
-
-
