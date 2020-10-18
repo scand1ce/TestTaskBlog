@@ -32,6 +32,7 @@ INSTALLED_APPS = [
 
     'users.apps.UsersConfig',
     'blog.apps.BlogConfig',
+    'subscriptions.apps.SubscriptionsConfig',
 
 
 

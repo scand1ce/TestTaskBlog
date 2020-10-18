@@ -1,6 +1,5 @@
 from django.db import models
 from django.urls import reverse
-
 from users.models import User
 
 
@@ -35,3 +34,5 @@ class New(models.Model):
         verbose_name = 'Новость блога'
         verbose_name_plural = 'Новости блога'
         ordering = ['-title', '-created_at']
+
+
