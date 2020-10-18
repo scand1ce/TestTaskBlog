@@ -4,14 +4,7 @@
 
 {% block content %}
 
-<style type="text/css">
-    #layer2 {
-        width: 5%; /* Ширина второго слоя */
-        background: #cc0;
-    }
 
-
-</style>
 {% if user.is_authenticated %}
 
 
@@ -24,29 +17,21 @@
     <div id="layer2" class="container">
         <div class="card">
             <div class="card-body"><!-- Начало текстового контента -->
-                {{ blog.owner }}
+                <button class="info nullbutton">
+                    <a href="{% url 'detail_blog' blog.pk %}">
+                        <font color="black">{{ blog.owner }}</font>
+                    </a>
+                </button>
             </div>
-            <button class="info nullbutton" >
-     <a href="{% url 'detail_blog' blog.pk %}" class="btn bg-dark text-white">Смотреть полностью</a>
- </button>
-                   </div>
-                   </div>
-
-
-
-
-
-
+            <button class="info nullbutton">
+                <a href="{% url 'detail_blog' blog.pk %}" class="btn bg-dark text-white">Смотреть полностью</a>
+            </button>
         </div>
-        <hr>
-
-        {% endfor %}
-
-
-
-
-
+    </div>
 </div>
+<hr>
+
+{% endfor %}
 
 {% endif %}
 

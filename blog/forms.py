@@ -10,4 +10,4 @@ class CreateNewsForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['news_text'].widget = Textarea(attrs={'rows': 20})
+        self.fields['news_text'].widget = Textarea(attrs={'rows': 5})

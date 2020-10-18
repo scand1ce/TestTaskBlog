@@ -1,13 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-
-
-<h2>Log In</h2>
+<h2>Войдите в аккаунт!</h2>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <input class="btn-dark" type="button" value="Войти" onclick="location.href='{% url 'home' %}'">
+    <button type="submit">Войти</button>
 </form>
-
-
 {% endblock content %}

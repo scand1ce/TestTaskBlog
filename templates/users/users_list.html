@@ -47,7 +47,11 @@
                 </tr>
                 {% for user in user_list %}
                 <tr>
-                    <td>{{ user.username }}</td>
+                    <td>
+                        <a href="{% url 'detail_blog' user.pk %}">
+                            <font color="black"><b>{{ user.username }}</b></font>
+                        </a>
+                    </td>
                     <td>{{ user.email }}</td>
 
                 </tr>
