@@ -1,9 +1,11 @@
+from urllib import request
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import FormMixin
-from blog.forms import CreateNewsForm
+from blog.forms import CreateNewsForm, CreateSubForm
 from blog.models import Blog
+
 
 
 class ListBlogView(LoginRequiredMixin, ListView):
@@ -31,4 +33,14 @@ class BlogView(FormMixin, DetailView):
         self.object.user_blog = self.get_object()
         self.object.author = self.request.user
         self.object.save()
+        return super().form_valid(form)
+
+
+class SubscribeView(FormMixin, ListView):
+    form_class = CreateSubForm
+    model = Blog
+    success_url = reverse_lazy('list_blog')
+    template_name = 'blog/detail_blog.html'
+
+    def form_valid(self, form):
         return super().form_valid(form)
