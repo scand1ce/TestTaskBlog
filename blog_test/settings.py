@@ -33,8 +33,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'blog.apps.BlogConfig',
 
-
-
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -121,7 +120,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-
+SHELL_PLUS = "ipython"
 
 STATIC_URL = '/static/'
 

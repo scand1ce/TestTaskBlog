@@ -16,15 +16,20 @@
         <hr color="white">
 
 
-         {% if user.is_authenticated and request.user.pk == blog.owner.pk %}
+
     </div>
+
+         {% if user.is_authenticated and request.user.pk == blog.owner.pk %}
     <div class="container-md-center" style="background-color: #16181b">
 
         <div class="col-lg-5" >
             <form action="" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
+
                 <button type="submit" value="Добавить" class="btn btn-dark">Добавить</button>
+
+
             </form>
         </div>
             </div>

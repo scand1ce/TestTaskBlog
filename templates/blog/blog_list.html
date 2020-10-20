@@ -8,22 +8,30 @@
 
 <h3 class="text-md-center">Список блогов:</h3>
 
+{% for blog in blog_list %}
 <div class="main-container">
 
-    {% for blog in blog_list %}
-
-    <div id="layer2" class="container">
+    <div id="layer2" class="container-p-3">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body-md-center">
                 <button class="info nullbutton">
                     <a href="{% url 'detail_blog' blog.pk %}">
-                        <font color="black">{{ blog.owner }}</font>
+                        <font color="black">Блог блогера <font>
+                            <b>{{ blog.owner }}</b>
+                        </font></font>
                     </a>
                 </button>
             </div>
             <button class="info nullbutton">
                 <a href="{% url 'detail_blog' blog.pk %}" class="btn bg-dark text-white">Смотреть полностью</a>
             </button>
+            {% if user.is_authenticated and request.user.pk != blog.owner.pk %}
+
+                {%if request.user != blog.user_id %}
+
+                <a href="{% url 'list_blog' blog.owner.pk %}" class="btn bg-dark text-white">Подписаться</a>
+{% endif %}
+            {% endif %}
         </div>
     </div>
 </div>

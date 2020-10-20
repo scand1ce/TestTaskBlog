@@ -1,18 +1,18 @@
 from django.db import models
 from django.urls import reverse
-
 from users.models import User
 
 
 class Blog(models.Model):
+
     owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Владелец блога')
+    blog_id = models.AutoField(primary_key=True)
 
     def __str__(self):
         return str(self.owner)
 
     def get_absolute_url(self):
-        url = reverse('detail_blog', args=[self.owner, self.pk])
-        return url
+        return reverse('detail_blog', args=[self.pk])
 
     class Meta:
         verbose_name = 'Блог пользователя'
@@ -34,4 +34,18 @@ class New(models.Model):
     class Meta:
         verbose_name = 'Новость блога'
         verbose_name_plural = 'Новости блога'
-        ordering = ['-title', '-created_at']
+        ordering = ['-created_at']
+
+
+class Subscription(models.Model):
+    subscription_no = models.AutoField(primary_key=True)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    blog_id = models.ForeignKey(Blog, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ['subscription_no']
+        unique_together = ('blog_id', 'user_id')
+
+
+    def get_absolute_url(self):
+        return reverse('list_blog')
