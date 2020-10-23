@@ -7,7 +7,6 @@ from blog.forms import CreateNewsForm, CreateSubForm
 from blog.models import Blog
 
 
-
 class ListBlogView(LoginRequiredMixin, ListView):
     model = Blog
     template_name = 'blog/blog_list.html'

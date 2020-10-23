@@ -4,7 +4,6 @@ from users.models import User
 
 
 class Blog(models.Model):
-
     owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Владелец блога')
     blog_id = models.AutoField(primary_key=True)
 
@@ -45,7 +44,6 @@ class Subscription(models.Model):
     class Meta:
         ordering = ['subscription_no']
         unique_together = ('blog_id', 'user_id')
-
 
     def get_absolute_url(self):
         return reverse('list_blog')
